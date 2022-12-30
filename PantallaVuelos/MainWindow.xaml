@@ -5,8 +5,124 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PantallaVuelos"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="1080" Width="1920">
+    <Window.Resources>
+        <ResourceDictionary>
 
+            <SolidColorBrush x:Key="Azul1">#0b2343</SolidColorBrush>
+            <SolidColorBrush x:Key="Azul2">#002b5c</SolidColorBrush>
+            <SolidColorBrush x:Key="Azul3">#004990</SolidColorBrush>
+            <SolidColorBrush x:Key="AzulBordes">#3871a8</SolidColorBrush>
+            <SolidColorBrush x:Key="GrisBordes">#d1d1d1</SolidColorBrush>
+            <SolidColorBrush x:Key="Rojo">#fa0000</SolidColorBrush>
+
+            <Style x:Key="LabelSubTitle" TargetType="Label">
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="{StaticResource Azul1}"></Setter>
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            </Style>
+        </ResourceDictionary>
+        
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            
+        </Grid.RowDefinitions>
+
+        <Border Background="{StaticResource Azul1}">
+            <Border BorderThickness="0,0,0,10"
+                    BorderBrush="#fa0000">
+                <TextBlock Padding="160,0,0,0"
+                           FontSize="100"
+                           FontWeight="Black"
+                           Foreground="White">SALIDAS</TextBlock>
+            </Border>
+        </Border>
+
+        <Border Background="{StaticResource Azul2}"
+                Grid.Row="1"
+                BorderThickness="0,0,0,2"
+                BorderBrush="{StaticResource AzulBordes}">
+            <UniformGrid
+                     Rows="1"
+                     VerticalAlignment="Center">
+                <!--<Label>AereoLinea</Label>-->
+                <Label Style="{StaticResource LabelSubTitle}">Hora</Label>
+                <Label Style="{StaticResource LabelSubTitle}">Hora Salida</Label>
+                <Label Style="{StaticResource LabelSubTitle}">Origen</Label>
+                <Label Style="{StaticResource LabelSubTitle}">Destino</Label>
+                <Label Style="{StaticResource LabelSubTitle}">Puerta</Label>
+                <Label Style="{StaticResource LabelSubTitle}">Estado</Label>
+
+            </UniformGrid>
+        </Border>
+
+        <Border Background="white"
+                Grid.Row="2">
+        <!--<ListBox Grid.Row="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <UniformGrid
+                     Rows="1">
+                        <Label>Salida</Label>
+                        <Label>Salida</Label>
+                        <Label>Salida</Label>
+                        <Label>Salida</Label>
+                        <Label>Salida</Label>
+                        <Label>Salida</Label>
+                        <Label>Salida</Label>
+                    </UniformGrid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>-->
+
+            <StackPanel >
+                <Border BorderBrush="{StaticResource GrisBordes}"
+                        BorderThickness="0,0,0,2">
+                    <UniformGrid Rows="1">
+                        <Label>18:00</Label>
+                        <Label>18:30</Label>
+                        <Label>Mexico</Label>
+                        <Label>Francia</Label>
+                        <Label>A</Label>
+                        <Label>Retraso</Label>
+                    </UniformGrid>
+                </Border>
+                <Border BorderBrush="{StaticResource GrisBordes}"
+                        BorderThickness="0,0,0,2">
+                    <UniformGrid Rows="1">
+                        <Label>18:00</Label>
+                        <Label>18:30</Label>
+                        <Label>Mexico</Label>
+                        <Label>Francia</Label>
+                        <Label>A</Label>
+                        <Label>Retraso</Label>
+                    </UniformGrid>
+                </Border>
+                <Border BorderBrush="{StaticResource GrisBordes}"
+                        BorderThickness="0,0,0,2">
+                    <UniformGrid Rows="1">
+                        <Label>18:00</Label>
+                        <Label>18:30</Label>
+                        <Label>Mexico</Label>
+                        <Label>Francia</Label>
+                        <Label>A</Label>
+                        <Label>Retraso</Label>
+                    </UniformGrid>
+                </Border>
+            </StackPanel>
+
+        </Border>
     </Grid>
 </Window>
