@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdministracionVuelosMovil.Views.HomeView"
+             Title="AeroMexico"
+             Background="{StaticResource Azul1}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <SolidColorBrush x:Key="Azul1">#0b2343</SolidColorBrush>
+            <SolidColorBrush x:Key="Azul2">#002b5c</SolidColorBrush>
+            <SolidColorBrush x:Key="Azul3">#004990</SolidColorBrush>
+            <SolidColorBrush x:Key="AzulBordes">#3871a8</SolidColorBrush>
+            <SolidColorBrush x:Key="GrisBordes">#d1d1d1</SolidColorBrush>
+            <SolidColorBrush x:Key="Rojo">#fa0000</SolidColorBrush>
+
+            <!--<Style x:Key="LabelSubTitle" TargetType="Label">
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="Foreground" Value="White"></Setter>
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            </Style>-->
+
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="10"></Setter>
+            </Style>
+
+            <Style TargetType="Path">
+                <Setter Property="Fill" Value="white"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1"
+                Grid.RowSpan="2"
+                Background="white">
+            <CollectionView></CollectionView>
+        </Border>
+
+        <StackLayout Grid.Row="1"
+                     Grid.RowSpan="2">
+            
+            <Border Background="{StaticResource GrisBordes}"
+                    HeightRequest="260"
+                    Margin="40">
+                <Grid Background="red"
+                      Margin="10">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                        <StackLayout BackgroundColor="Black">
+                            <Label>Aerolinea</Label>
+                            <Label>AeroMexico</Label>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1">
+                            <Label>Origen</Label>
+                            <Label>Mexico</Label>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="2"
+                                     Background="black">
+                            <Label>Destino</Label>
+                            <Label>Francia</Label>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1">
+                            <Label>Hora</Label>
+                            <Label>18:00</Label>
+                        </StackLayout>
+                    
+                        <StackLayout Grid.Row="1"
+                                     Grid.Column="1">
+                            <Label>Hora Salida</Label>
+                            <Label>18:30</Label>
+                        </StackLayout>
+                    
+                        <StackLayout Grid.Row="1"
+                                     Grid.Column="2">
+                            <Label>Puerta</Label>
+                            <Label>A</Label>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="3">
+                            <Label>Estado</Label>
+                            <Label>Retraso</Label>
+                        </StackLayout>
+
+                </Grid>
+            </Border>
+        </StackLayout>
+
+     
+
+    </Grid>
+</ContentPage>

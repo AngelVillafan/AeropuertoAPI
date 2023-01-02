@@ -57,7 +57,7 @@
             <UniformGrid
                      Rows="1"
                      VerticalAlignment="Center">
-                <!--<Label>AereoLinea</Label>-->
+                <Label Style="{StaticResource LabelSubTitle}">AeroLinea</Label>
                 <Label Style="{StaticResource LabelSubTitle}">Hora</Label>
                 <Label Style="{StaticResource LabelSubTitle}">Hora Salida</Label>
                 <Label Style="{StaticResource LabelSubTitle}">Origen</Label>
@@ -70,19 +70,21 @@
 
         <Border Background="white"
                 Grid.Row="2">
-        <!--<ListBox Grid.Row="2">
+        <!--<ListBox>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <UniformGrid
-                     Rows="1">
-                        <Label>Salida</Label>
-                        <Label>Salida</Label>
-                        <Label>Salida</Label>
-                        <Label>Salida</Label>
-                        <Label>Salida</Label>
-                        <Label>Salida</Label>
-                        <Label>Salida</Label>
+                     <Border BorderBrush="{StaticResource GrisBordes}"
+                        BorderThickness="0,0,0,2">
+                    <UniformGrid Rows="1">
+                        <Label>AeroMexico</Label>
+                        <Label>18:00</Label>
+                        <Label>18:30</Label>
+                        <Label>Mexico</Label>
+                        <Label>Francia</Label>
+                        <Label>A</Label>
+                        <Label>Retraso</Label>
                     </UniformGrid>
+                </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>-->
@@ -91,6 +93,7 @@
                 <Border BorderBrush="{StaticResource GrisBordes}"
                         BorderThickness="0,0,0,2">
                     <UniformGrid Rows="1">
+                        <Label>AeroMexico</Label>
                         <Label>18:00</Label>
                         <Label>18:30</Label>
                         <Label>Mexico</Label>
@@ -102,6 +105,7 @@
                 <Border BorderBrush="{StaticResource GrisBordes}"
                         BorderThickness="0,0,0,2">
                     <UniformGrid Rows="1">
+                        <Label>AeroMexico</Label>
                         <Label>18:00</Label>
                         <Label>18:30</Label>
                         <Label>Mexico</Label>
@@ -113,6 +117,7 @@
                 <Border BorderBrush="{StaticResource GrisBordes}"
                         BorderThickness="0,0,0,2">
                     <UniformGrid Rows="1">
+                        <Label>AeroMexico</Label>
                         <Label>18:00</Label>
                         <Label>18:30</Label>
                         <Label>Mexico</Label>
