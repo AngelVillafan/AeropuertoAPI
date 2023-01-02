@@ -1,25 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using VuelosAPI.Models;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<sistem21_aeromexicoContext>(optionsBuilder =>
+
+    optionsBuilder.UseMySql("server=sistemas19.com;database=sistem21_aeromexico;user=sistem21_aero;password=sistemas19_", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.5.17-mariadb")),
+    ServiceLifetime.Transient
+    );
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseRouting();
 
-app.UseHttpsRedirection();
+app.UseFileServer();
 
-app.UseAuthorization();
-
-app.MapControllers();
+app.UseEndpoints(x => x.MapControllers());
 
 app.Run();
