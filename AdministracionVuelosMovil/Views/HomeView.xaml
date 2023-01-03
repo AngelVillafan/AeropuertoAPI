@@ -7,106 +7,168 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <SolidColorBrush x:Key="Azul1">#0b2343</SolidColorBrush>
-            <SolidColorBrush x:Key="Azul2">#002b5c</SolidColorBrush>
-            <SolidColorBrush x:Key="Azul3">#004990</SolidColorBrush>
-            <SolidColorBrush x:Key="AzulBordes">#3871a8</SolidColorBrush>
-            <SolidColorBrush x:Key="GrisBordes">#d1d1d1</SolidColorBrush>
-            <SolidColorBrush x:Key="Rojo">#fa0000</SolidColorBrush>
+            <Color x:Key="Azul1">#0b2343</Color>
+            <Color x:Key="Azul2">#002b5c</Color>
+            <Color x:Key="Azul3">#004990</Color>
+            <Color x:Key="AzulBordes">#3871a8</Color>
+            <Color x:Key="GrisBordes">#d1d1d1</Color>
+            <Color x:Key="Rojo">#fa0000</Color>
 
-            <!--<Style x:Key="LabelSubTitle" TargetType="Label">
-                <Setter Property="FontWeight" Value="Bold"></Setter>
-                <Setter Property="Foreground" Value="White"></Setter>
-                <Setter Property="FontSize" Value="40"></Setter>
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-            </Style>-->
-
-            <Style TargetType="Label">
-                <Setter Property="Margin" Value="10"></Setter>
+            <Style TargetType="StackLayout">
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
             </Style>
 
-            <Style TargetType="Path">
-                <Setter Property="Fill" Value="white"></Setter>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource Azul2}"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+            </Style>
+
+            <Style TargetType="Label" x:Key="SubtitleLabel">
+                <Setter Property="FontSize" Value="Small"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource AzulBordes}"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+            </Style>
+
+            <Style TargetType="Label" x:Key="TitleLabel">
+                <Setter Property="FontSize" Value="60"></Setter>
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="Margin" Value="0"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalTextAlignment" Value="End"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                <Setter Property="Margin" Value="0,0,0,10"></Setter>
             </Style>
 
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
 
+        <Label Style="{StaticResource TitleLabel}">VUELOS</Label>
+        
+        <Border Background="{StaticResource Rojo}"
+                VerticalOptions="EndAndExpand"
+                HeightRequest="10"
+                StrokeThickness="0"></Border>
+        
         <Border Grid.Row="1"
                 Grid.RowSpan="2"
-                Background="white">
-            <CollectionView></CollectionView>
+                Background="#f5f5f5"
+                StrokeThickness="0">
+            <CollectionView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="white"
+                                HeightRequest="80"
+                                Margin="40,40,40,-20"
+                                StrokeThickness="0">    
+                            <FlexLayout JustifyContent="SpaceBetween"
+                            Margin="20,0,0,0">
+                                <StackLayout>
+                                    <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
+                                    <Label>Viva AeroBus</Label>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Style="{StaticResource SubtitleLabel}">Destino</Label>
+                                    <Label>Estados Unidos</Label>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Style="{StaticResource SubtitleLabel}">Hora</Label>
+                                    <Label>hora</Label>
+                                </StackLayout>
+                                <Border FlexLayout.AlignSelf="End"
+                            WidthRequest="20"
+                            HeightRequest="80"
+                            StrokeThickness="0">
+                                </Border>
+                            </FlexLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Border>
 
         <StackLayout Grid.Row="1"
-                     Grid.RowSpan="2">
-            
-            <Border Background="{StaticResource GrisBordes}"
-                    HeightRequest="260"
-                    Margin="40">
-                <Grid Background="red"
-                      Margin="10">
-                    
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+                     Grid.RowSpan="2" 
+                     VerticalOptions="Start">
 
-                        <StackLayout BackgroundColor="Black">
-                            <Label>Aerolinea</Label>
-                            <Label>AeroMexico</Label>
-                        </StackLayout>
-
-                        <StackLayout Grid.Column="1">
-                            <Label>Origen</Label>
-                            <Label>Mexico</Label>
-                        </StackLayout>
-
-                        <StackLayout Grid.Column="2"
-                                     Background="black">
-                            <Label>Destino</Label>
-                            <Label>Francia</Label>
-                        </StackLayout>
-
-                        <StackLayout Grid.Row="1">
-                            <Label>Hora</Label>
-                            <Label>18:00</Label>
-                        </StackLayout>
-                    
-                        <StackLayout Grid.Row="1"
-                                     Grid.Column="1">
-                            <Label>Hora Salida</Label>
-                            <Label>18:30</Label>
-                        </StackLayout>
-                    
-                        <StackLayout Grid.Row="1"
-                                     Grid.Column="2">
-                            <Label>Puerta</Label>
-                            <Label>A</Label>
-                        </StackLayout>
-
-                        <StackLayout Grid.Row="2"
-                                 Grid.Column="1"
-                                 Grid.ColumnSpan="3">
-                            <Label>Estado</Label>
-                            <Label>Retraso</Label>
-                        </StackLayout>
-
-                </Grid>
+            <Border Background="white"
+                    HeightRequest="80"
+                    Margin="40,40,40,-20"
+                    StrokeThickness="0">
+                <FlexLayout JustifyContent="SpaceBetween"
+                            Margin="20,0,0,0">
+                    <StackLayout>
+                        <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
+                        <Label>Viva AeroBus</Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Style="{StaticResource SubtitleLabel}">Destino</Label>
+                        <Label>Estados Unidos</Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Style="{StaticResource SubtitleLabel}">Hora</Label>
+                        <Label>hora</Label>
+                    </StackLayout>
+                    <Border FlexLayout.AlignSelf="End"
+                            WidthRequest="20"
+                            HeightRequest="80"
+                            StrokeThickness="0">
+                    </Border>
+                </FlexLayout>
             </Border>
+
+            <Border Background="white"
+                    HeightRequest="80"
+                    Margin="40,40,40,-20"
+                    StrokeThickness="0">
+                <FlexLayout JustifyContent="SpaceBetween"
+                            Margin="20,0,0,0">
+                    <StackLayout>
+                        <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
+                        <Label>Viva AeroBus</Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Style="{StaticResource SubtitleLabel}">Destino</Label>
+                        <Label>Estados Unidos</Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Style="{StaticResource SubtitleLabel}">Hora</Label>
+                        <Label>hora</Label>
+                    </StackLayout>
+                    <Border FlexLayout.AlignSelf="End"
+                            WidthRequest="20"
+                            HeightRequest="80"
+                            StrokeThickness="0">
+                    </Border>
+                </FlexLayout>
+            </Border>
+
         </StackLayout>
 
+        <Border Grid.Row="2" 
+                BackgroundColor="{StaticResource Azul3}"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Padding="20">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="100"></RoundRectangle>
+            </Border.StrokeShape>
+            <HorizontalStackLayout>
+                <Label Margin="0,0,10,0"
+                       TextColor="White">Agregar Vuelo</Label>
+                <Path Data="M32,0L22,16.800003 10.600006,13.800003 10.900024,15.400009 14.900024,16.699997 10.900024,21.5 8.7000122,13 23.800018,3.6999969 5.8000183,10.900009 0,6.6999969z" Fill="white"></Path>
+            </HorizontalStackLayout>
+        </Border>
      
 
     </Grid>
