@@ -1,14 +1,26 @@
 ﻿<Window x:Class="PantallaVuelos.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:vm="clr-namespace:PantallaVuelos.ViewModels"
+        xmlns:hp ="clr-namespace:PantallaVuelos.Helpers"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PantallaVuelos"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920">
+        Title="MainWindow" Height="1080" Width="1920"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+
+    <Window.DataContext>
+        <vm:MainViewModel></vm:MainViewModel>
+    </Window.DataContext>
+
+
     <Window.Resources>
+        
+
         <ResourceDictionary>
 
+            <hp:EstadoConverer x:Key="estadoconverter"></hp:EstadoConverer>
             <SolidColorBrush x:Key="Azul1">#0b2343</SolidColorBrush>
             <SolidColorBrush x:Key="Azul2">#002b5c</SolidColorBrush>
             <SolidColorBrush x:Key="Azul3">#004990</SolidColorBrush>
@@ -28,6 +40,36 @@
                 <Setter Property="FontSize" Value="40"></Setter>
                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             </Style>
+            <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+                <Setter Property="Width" Value="8"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Cursor" Value="SizeWE"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                            <Grid>
+                                <theme:DataGridHeaderBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" IsClickable="{TemplateBinding CanUserSort}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}" SeparatorBrush="{TemplateBinding SeparatorBrush}">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </theme:DataGridHeaderBorder>
+                                <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                                <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            
         </ResourceDictionary>
         
     </Window.Resources>
@@ -35,7 +77,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"></RowDefinition>
-            <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition></RowDefinition>
             
         </Grid.RowDefinitions>
@@ -50,7 +91,7 @@
             </Border>
         </Border>
 
-        <Border Background="{StaticResource Azul2}"
+        <!--<Border Background="{StaticResource Azul2}"
                 Grid.Row="1"
                 BorderThickness="0,0,0,2"
                 BorderBrush="{StaticResource AzulBordes}">
@@ -66,68 +107,55 @@
                 <Label Style="{StaticResource LabelSubTitle}">Estado</Label>
 
             </UniformGrid>
-        </Border>
+        </Border>-->
 
         <Border Background="white"
                 Grid.Row="2">
-        <!--<ListBox>
+        <!--<ListBox ItemsSource="{Binding Arrivals}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                      <Border BorderBrush="{StaticResource GrisBordes}"
                         BorderThickness="0,0,0,2">
                     <UniformGrid Rows="1">
-                        <Label>AeroMexico</Label>
-                        <Label>18:00</Label>
-                        <Label>18:30</Label>
-                        <Label>Mexico</Label>
-                        <Label>Francia</Label>
-                        <Label>A</Label>
-                        <Label>Retraso</Label>
-                    </UniformGrid>
+                                <Label Content="{Binding Aerolinea}"></Label>
+                                <Label Content="{Binding HorarioLlegada}"></Label>
+                                <Label Content="{Binding HorarioSalida}"></Label>
+                                <Label Content="{Binding Origen}"></Label>
+                                <Label Content="{Binding Destino}"></Label>
+                                <Label Content="{Binding Puerta}"></Label>
+                                <Label Content="{Binding Estado, Converter={StaticResource estadoconverter}}"></Label>
+                            </UniformGrid>
                 </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>-->
 
-            <StackPanel >
-                <Border BorderBrush="{StaticResource GrisBordes}"
-                        BorderThickness="0,0,0,2">
-                    <UniformGrid Rows="1">
-                        <Label>AeroMexico</Label>
-                        <Label>18:00</Label>
-                        <Label>18:30</Label>
-                        <Label>Mexico</Label>
-                        <Label>Francia</Label>
-                        <Label>A</Label>
-                        <Label>Retraso</Label>
-                    </UniformGrid>
-                </Border>
-                <Border BorderBrush="{StaticResource GrisBordes}"
-                        BorderThickness="0,0,0,2">
-                    <UniformGrid Rows="1">
-                        <Label>AeroMexico</Label>
-                        <Label>18:00</Label>
-                        <Label>18:30</Label>
-                        <Label>Mexico</Label>
-                        <Label>Francia</Label>
-                        <Label>A</Label>
-                        <Label>Retraso</Label>
-                    </UniformGrid>
-                </Border>
-                <Border BorderBrush="{StaticResource GrisBordes}"
-                        BorderThickness="0,0,0,2">
-                    <UniformGrid Rows="1">
-                        <Label>AeroMexico</Label>
-                        <Label>18:00</Label>
-                        <Label>18:30</Label>
-                        <Label>Mexico</Label>
-                        <Label>Francia</Label>
-                        <Label>A</Label>
-                        <Label>Retraso</Label>
-                    </UniformGrid>
-                </Border>
-            </StackPanel>
-
+            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Header="Aerolinea"
+                        Binding="{Binding Aerolinea}"/>
+                    <DataGridTextColumn 
+                        Header="Hora Llegada"
+                        Binding="{Binding HorarioLlegada}"/>
+                    <DataGridTextColumn 
+                        Header="Hora Salida"
+                        Binding="{Binding HorarioSalida}"/>
+                    <DataGridTextColumn 
+                        Header="Origen"
+                        Binding="{Binding Origen}"/>
+                    <DataGridTextColumn 
+                        Header="Destino"
+                        Binding="{Binding Destino}"/>
+                    <DataGridTextColumn 
+                        Header="Puerta"
+                        Binding="{Binding Puerta}"/>
+                    <DataGridTextColumn 
+                        Header="Estado"
+                        Binding="{Binding Estado}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Border>
     </Grid>
 </Window>
