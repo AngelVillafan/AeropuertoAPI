@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AdministracionVuelosMovil.Views.AgregarView"
-             Title="AgregarView"
-             BackgroundColor="{StaticResource Azul1}">
+             x:Class="AdministracionVuelosMovil.Views.EditView"
+             Title="EditView">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -45,7 +44,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
-        
+
         <Grid.Background>
             <LinearGradientBrush EndPoint="0,1">
                 <GradientStop Color="{StaticResource Azul1}"
@@ -54,12 +53,12 @@
                           Offset="0.5" />
             </LinearGradientBrush>
         </Grid.Background>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="1.8*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <StackLayout Margin="30,0,30,40"
                      VerticalOptions="End">
 
@@ -74,7 +73,7 @@
                        TextColor="White"
                        VerticalOptions="Center"
                        FontSize="Title"
-                       FontAttributes="Bold">Agregar Vuelo</Label>
+                       FontAttributes="Bold">Editando Vuelo . . .</Label>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal"
@@ -155,7 +154,7 @@
             <StackLayout Margin="20,0"
                          VerticalOptions="EndAndExpand">
 
-                
+
                 <StackLayout>
                     <Label Style="{StaticResource SubtitleLabel}">Estado</Label>
                     <Picker Background="#f1f1f1"
@@ -251,11 +250,11 @@
                     <Label
                        TextColor="White"
                        FontAttributes="Bold"
-                        HorizontalOptions="Center">Confirmar</Label>
+                        HorizontalOptions="Center">Confirmar Cambios</Label>
                 </Border>
 
             </StackLayout>
-            
+
         </Border>
 
         <Label Grid.Row="1"

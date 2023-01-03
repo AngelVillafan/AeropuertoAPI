@@ -8,7 +8,10 @@ namespace AdministracionVuelosMovil
         {
             InitializeComponent();
 
-            MainPage = new AgregarView();
+            MainPage = new HomeView();
+            //MainPage = new InfoView();
+            //MainPage = new AgregarView();
+            //MainPage = new EditView();
         }
     }
 }
