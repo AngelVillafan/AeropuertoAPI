@@ -8,7 +8,7 @@ namespace AdministracionVuelosMovil
         {
             InitializeComponent();
 
-            MainPage = new HomeView();
+            MainPage = new NavigationPage(new HomeView());
             //MainPage = new InfoView();
             //MainPage = new AgregarView();
             //MainPage = new EditView();

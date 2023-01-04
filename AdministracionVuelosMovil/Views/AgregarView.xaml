@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AdministracionVuelosMovil.Views.AgregarView"
-             Title="AgregarView"
              BackgroundColor="{StaticResource Azul1}">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -68,6 +67,9 @@
                 <Frame BackgroundColor="{StaticResource Azul1}"
                        CornerRadius="100"
                        BorderColor="Transparent">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VerHomeCommand}"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
                     <Path Fill="white" Data="M13.170958,0L14.585027,1.4149784 3.8476841,12.144024 32.000095,12.144024 32.000095,14.145017 3.8188674,14.145017 14.607,24.922982 13.191954,26.338998 0,13.159001z" ></Path>
                 </Frame>
                 <Label Margin="20,0"

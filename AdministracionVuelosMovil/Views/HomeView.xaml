@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AdministracionVuelosMovil.ViewModels"
              x:Class="AdministracionVuelosMovil.Views.HomeView"
-             Title="AeroMexico"
+             Title="Aeromexico"
              Background="{StaticResource Azul1}">
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel></vm:HomeViewModel>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -64,7 +69,7 @@
                 Grid.RowSpan="2"
                 Background="#f5f5f5"
                 StrokeThickness="0">
-            <CollectionView>
+            <CollectionView ItemsSource="{Binding ListaDeVuelos}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border Background="white"
@@ -75,15 +80,15 @@
                             Margin="20,0,0,0">
                                 <StackLayout>
                                     <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
-                                    <Label>Viva AeroBus</Label>
+                                    <Label Text="{Binding Aerolinea}"></Label>
                                 </StackLayout>
                                 <StackLayout>
                                     <Label Style="{StaticResource SubtitleLabel}">Destino</Label>
-                                    <Label>Estados Unidos</Label>
+                                    <Label Text="{Binding Destino}"></Label>
                                 </StackLayout>
                                 <StackLayout>
                                     <Label Style="{StaticResource SubtitleLabel}">Hora</Label>
-                                    <Label>hora</Label>
+                                    <Label Text="{Binding HorarioSalida,StringFormat='{}{0:h:mm tt}'}"></Label>
                                 </StackLayout>
                                 <Border FlexLayout.AlignSelf="End"
                             WidthRequest="20"
@@ -97,69 +102,18 @@
             </CollectionView>
         </Border>
 
-        <StackLayout Grid.Row="1"
-                     Grid.RowSpan="2" 
-                     VerticalOptions="Start">
-
-            <Border Background="white"
-                    HeightRequest="80"
-                    Margin="40,40,40,-20"
-                    StrokeThickness="0">
-                <FlexLayout JustifyContent="SpaceBetween"
-                            Margin="20,0,0,0">
-                    <StackLayout>
-                        <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
-                        <Label>Viva AeroBus</Label>
-                    </StackLayout>
-                    <StackLayout>
-                        <Label Style="{StaticResource SubtitleLabel}">Destino</Label>
-                        <Label>Estados Unidos</Label>
-                    </StackLayout>
-                    <StackLayout>
-                        <Label Style="{StaticResource SubtitleLabel}">Hora</Label>
-                        <Label>hora</Label>
-                    </StackLayout>
-                    <Border FlexLayout.AlignSelf="End"
-                            WidthRequest="20"
-                            HeightRequest="80"
-                            StrokeThickness="0">
-                    </Border>
-                </FlexLayout>
-            </Border>
-
-            <Border Background="white"
-                    HeightRequest="80"
-                    Margin="40,40,40,-20"
-                    StrokeThickness="0">
-                <FlexLayout JustifyContent="SpaceBetween"
-                            Margin="20,0,0,0">
-                    <StackLayout>
-                        <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
-                        <Label>Viva AeroBus</Label>
-                    </StackLayout>
-                    <StackLayout>
-                        <Label Style="{StaticResource SubtitleLabel}">Destino</Label>
-                        <Label>Estados Unidos</Label>
-                    </StackLayout>
-                    <StackLayout>
-                        <Label Style="{StaticResource SubtitleLabel}">Hora</Label>
-                        <Label>hora</Label>
-                    </StackLayout>
-                    <Border FlexLayout.AlignSelf="End"
-                            WidthRequest="20"
-                            HeightRequest="80"
-                            StrokeThickness="0">
-                    </Border>
-                </FlexLayout>
-            </Border>
-
-        </StackLayout>
+       
 
         <Border Grid.Row="2" 
                 BackgroundColor="{StaticResource Azul3}"
                 HorizontalOptions="Center"
                 VerticalOptions="Start"
                 Padding="20">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding VerAgregarCommand}">
+                    
+                </TapGestureRecognizer>
+            </Border.GestureRecognizers>
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="100"></RoundRectangle>
             </Border.StrokeShape>
