@@ -26,7 +26,8 @@ namespace AdministracionVuelosMovil.ViewModels
 
 
         public ObservableCollection<Vuelo> ListaDeVuelos { get; set; }
-        
+        public ObservableCollection<EstadoDeVuelo> EstadosDeVuelo { get; set; }
+
         AgregarView VistaAgg;
         EditView VistaEdit;
         InfoView VistaInfo;
@@ -47,7 +48,7 @@ namespace AdministracionVuelosMovil.ViewModels
             AgregarCommand = new Command(Agregar);
             VerEditarCommand = new Command(VerEditar);
             EditarCommand = new Command(Editar);
-            VerInfoCommand = new Command(VerInfo);
+            VerInfoCommand = new Command<Vuelo>(VerInfo);
             VerHomeCommand = new Command(VerHome);
             EliminarCommand = new Command(EliminarVuelo);
             Service.Confirmar += Service_Confirmar;
@@ -57,15 +58,29 @@ namespace AdministracionVuelosMovil.ViewModels
 
         private async void Service_Confirmar(string obj)
         {
-            await App.Current.MainPage.DisplayAlert("Informacion", obj,"ACEPTAR");
+            await App.Current.MainPage.DisplayAlert("Informacion", obj, "ACEPTAR");
         }
 
         private void EliminarVuelo()
         {
         }
 
-        private async void VerInfo()
+        private async void VerInfo(Vuelo vuelo)
         {
+            Avion = vuelo;
+            HoraLlegada = vuelo.HorarioLlegada.TimeOfDay;
+
+            if (Avion.Estado == (int)Estado.ATiempo)
+                EstadoVuelo = "A Tiempo";
+            else if (Avion.Estado == (int)Estado.Retrasado)
+                EstadoVuelo = "Retrasado";
+            else if (Avion.Estado == (int)Estado.Abordando)
+                EstadoVuelo = "Aborando";
+            else
+                EstadoVuelo = "Despego";
+
+            HoraSalida = vuelo.HorarioSalida.TimeOfDay;
+            Actualizar("");
             await Application.Current.MainPage.Navigation.PushAsync(VistaInfo);
 
         }
@@ -80,25 +95,29 @@ namespace AdministracionVuelosMovil.ViewModels
 
         }
 
-        private void Agregar()
+        private async void Agregar()
         {
             //Validas los datos
-            if(Avion!=null)
+            if (Avion != null)
             {
                 if (EstadoVuelo == "A Tiempo")
-                    Avion.Estado =(int) Estado.ATiempo;
+                    Avion.Estado = (int)Estado.ATiempo;
                 else if (EstadoVuelo == "Retrasado")
                     Avion.Estado = (int)Estado.Retrasado;
                 else if (EstadoVuelo == "Aborando")
                     Avion.Estado = (int)Estado.Abordando;
-                else 
+                else
                     Avion.Estado = (int)Estado.Despego;
 
                 Avion.HorarioLlegada = Avion.HorarioLlegada.Add(HoraLlegada);
                 Avion.HorarioSalida = Avion.HorarioSalida.Add(HoraLlegada);
+                Avion.HorarioSalida = Avion.HorarioSalida.AddHours(2);
+                Avion.HorarioLlegada = Avion.HorarioLlegada.AddHours(2);
                 Service.Agregar(Avion);
-                Application.Current.MainPage.Navigation.PopAsync();
-                
+                ListaDeVuelos.Clear();
+                Service.Get().Result.ForEach(x => ListaDeVuelos.Add(x));
+                await Application.Current.MainPage.Navigation.PopAsync();
+
             }
         }
 
@@ -109,9 +128,20 @@ namespace AdministracionVuelosMovil.ViewModels
 
         private void Rellenar()
         {
-            VistaAgg = new AgregarView() { BindingContext =this};
-            VistaEdit = new EditView() { BindingContext =this};
+            VistaAgg = new AgregarView() { BindingContext = this };
+            VistaEdit = new EditView() { BindingContext = this };
             VistaInfo = new InfoView() { BindingContext = this };
+            EstadosDeVuelo = new();
+
+            EstadoDeVuelo ATiempo = new() { Estado = "A Tiempo" };
+            EstadoDeVuelo Retrasado = new() { Estado = "Retrasado" };
+            EstadoDeVuelo Abordando = new() { Estado = "Abordando" };
+            EstadoDeVuelo Despego = new() { Estado = "Despego" };
+            EstadosDeVuelo.Add(ATiempo);
+            EstadosDeVuelo.Add(Retrasado);
+            EstadosDeVuelo.Add(Abordando);
+            EstadosDeVuelo.Add(Despego);
+            Actualizar("");
             //    ATiempo = 1,
             //Retrasado = 2,
             //Abordando = 3,
@@ -130,7 +160,7 @@ namespace AdministracionVuelosMovil.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(VistaAgg);
         }
 
-        public void Actualizar(string nombre)
+        public void Actualizar(string nombre="")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(nombre)));
         }

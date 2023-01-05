@@ -69,7 +69,7 @@
                 Grid.RowSpan="2"
                 Background="#f5f5f5"
                 StrokeThickness="0">
-            <CollectionView ItemsSource="{Binding ListaDeVuelos}">
+            <CollectionView ItemsSource="{Binding ListaDeVuelos}"> 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border Background="white"
@@ -96,6 +96,10 @@
                             StrokeThickness="0">
                                 </Border>
                             </FlexLayout>
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                            </Border.GestureRecognizers>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
