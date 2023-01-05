@@ -98,7 +98,7 @@
                              Margin="20,0,0,0">
                     <Label TextColor="{StaticResource GrisBordes}">Pais Origen</Label>
                     <Grid>
-                        <Entry TextColor="White" 
+                        <Entry TextColor="White" Text="{Binding Avion.Origen}"
                            Placeholder="ESCRIBA PAIS DE ORIGEN DEL VUELO"               
                            PlaceholderColor="{StaticResource GrisBordes}"
                            ></Entry>
@@ -129,7 +129,7 @@
                              Margin="20,0,0,0">
                     <Label TextColor="{StaticResource GrisBordes}">Pais Destino</Label>
                     <Grid>
-                        <Entry TextColor="White" 
+                        <Entry TextColor="White" Text="{Binding Avion.Destino}"
                            Placeholder="ESCRIBA PAIS DE DESTINO DEL VUELO"               
                            PlaceholderColor="{StaticResource GrisBordes}"
                            ></Entry>
@@ -161,10 +161,18 @@
                 <StackLayout>
                     <Label Style="{StaticResource SubtitleLabel}">Estado</Label>
                     <Picker Background="#f1f1f1"
+                            SelectedItem="{Binding EstadoVuelo}"
                         HeightRequest="60"
                         Margin="0,10"
                         TextColor="{StaticResource Azul1}"
-                        ></Picker>
+                        >
+                        <Picker.ItemsSource>
+                            <x:String>A Tiempo</x:String>
+                            <x:String>Retrasado</x:String>
+                            <x:String>Abordando</x:String>
+                            <x:String>Despego</x:String>
+                        </Picker.ItemsSource>
+                    </Picker>
                 </StackLayout>
 
                 <Grid>
@@ -178,8 +186,8 @@
                         <Label Style="{StaticResource SubtitleLabel}">Llegada</Label>
                         <Grid>
                             <StackLayout Orientation="Horizontal" Margin="0">
-                                <DatePicker TextColor="{StaticResource Azul1}"></DatePicker>
-                                <TimePicker TextColor="{StaticResource Azul1}"
+                                <DatePicker Date="{Binding Avion.HorarioLlegada}" TextColor="{StaticResource Azul1}"></DatePicker>
+                                <TimePicker Time="{Binding HoraLlegada}"  TextColor="{StaticResource Azul1}"
                                             Margin="50,0"></TimePicker>
                             </StackLayout>
                             <BoxView
@@ -195,8 +203,8 @@
                         <Label Style="{StaticResource SubtitleLabel}">Despegue</Label>
                         <Grid>
                             <StackLayout Orientation="Horizontal" Margin="0">
-                                <DatePicker TextColor="{StaticResource Azul1}"></DatePicker>
-                                <TimePicker TextColor="{StaticResource Azul1}"
+                                <DatePicker Date="{Binding Avion.HorarioSalida}" TextColor="{StaticResource Azul1}"></DatePicker>
+                                <TimePicker Time="{Binding HoraSalida}" TextColor="{StaticResource Azul1}"
                                             Margin="50,0"></TimePicker>
                             </StackLayout>
                             <BoxView
@@ -214,7 +222,8 @@
                     <Grid>
                         <Entry
                            TextColor="{StaticResource Azul1}"
-                           Placeholder="Aerolinea del vuelo."               
+                           Placeholder="Aerolinea del vuelo."     
+                            Text="{Binding Avion.Aerolinea}"
                            PlaceholderColor="{StaticResource GrisBordes}"
                            ></Entry>
                         <BoxView
@@ -230,6 +239,7 @@
                     <Grid>
                         <Entry 
                             Keyboard="Numeric"
+                            Text="{Binding Avon.Puerta}"
                             TextColor="{StaticResource Azul1}"
                            Placeholder="Puerta de abordaje del vuelo."               
                            PlaceholderColor="{StaticResource GrisBordes}"

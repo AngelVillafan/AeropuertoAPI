@@ -11,6 +11,7 @@ namespace AdministracionVuelosMovil.Services
     public class AvionesService
     {
         HttpClient cliente;
+        public event Action<string> Confirmar;
 
         public AvionesService()
         {
@@ -33,6 +34,19 @@ namespace AdministracionVuelosMovil.Services
             else
                 return vuelos;
 
+        }
+
+        public async Task Agregar(Vuelo v)
+        {
+            var json = JsonConvert.SerializeObject(v);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = cliente.PostAsync("/api/vuelos", content);
+            response.Wait();
+            if (!response.Result.IsSuccessStatusCode)
+            {
+                Confirmar.Invoke(await response.Result.Content.ReadAsStringAsync());
+            }
+                   
         }
     }
 }

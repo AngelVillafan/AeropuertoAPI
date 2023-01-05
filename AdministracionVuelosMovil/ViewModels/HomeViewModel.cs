@@ -26,12 +26,19 @@ namespace AdministracionVuelosMovil.ViewModels
 
 
         public ObservableCollection<Vuelo> ListaDeVuelos { get; set; }
+        
         AgregarView VistaAgg;
         EditView VistaEdit;
         InfoView VistaInfo;
 
         AvionesService Service = new();
 
+
+
+
+        public TimeSpan HoraLlegada { get; set; }
+        public TimeSpan HoraSalida { get; set; }
+        public string EstadoVuelo { get; set; }
         public HomeViewModel()
         {
             Service = new();
@@ -43,8 +50,14 @@ namespace AdministracionVuelosMovil.ViewModels
             VerInfoCommand = new Command(VerInfo);
             VerHomeCommand = new Command(VerHome);
             EliminarCommand = new Command(EliminarVuelo);
+            Service.Confirmar += Service_Confirmar;
 
-            CargarVentas();
+            Rellenar();
+        }
+
+        private async void Service_Confirmar(string obj)
+        {
+            await App.Current.MainPage.DisplayAlert("Informacion", obj,"ACEPTAR");
         }
 
         private void EliminarVuelo()
@@ -69,6 +82,24 @@ namespace AdministracionVuelosMovil.ViewModels
 
         private void Agregar()
         {
+            //Validas los datos
+            if(Avion!=null)
+            {
+                if (EstadoVuelo == "A Tiempo")
+                    Avion.Estado =(int) Estado.ATiempo;
+                else if (EstadoVuelo == "Retrasado")
+                    Avion.Estado = (int)Estado.Retrasado;
+                else if (EstadoVuelo == "Aborando")
+                    Avion.Estado = (int)Estado.Abordando;
+                else 
+                    Avion.Estado = (int)Estado.Despego;
+
+                Avion.HorarioLlegada = Avion.HorarioLlegada.Add(HoraLlegada);
+                Avion.HorarioSalida = Avion.HorarioSalida.Add(HoraLlegada);
+                Service.Agregar(Avion);
+                Application.Current.MainPage.Navigation.PopAsync();
+                
+            }
         }
 
         private async void VerHome()
@@ -76,16 +107,26 @@ namespace AdministracionVuelosMovil.ViewModels
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        private void CargarVentas()
+        private void Rellenar()
         {
             VistaAgg = new AgregarView() { BindingContext =this};
             VistaEdit = new EditView() { BindingContext =this};
             VistaInfo = new InfoView() { BindingContext = this };
+            //    ATiempo = 1,
+            //Retrasado = 2,
+            //Abordando = 3,
+            //Despego = 4
         }
 
         private async void VerAgregar()
         {
             Avion = new Vuelo();
+            Actualizar(nameof(Avion));
+            Avion.HorarioSalida = DateTime.Now.Date;
+            Avion.HorarioLlegada = DateTime.Now.Date;
+            HoraLlegada = DateTime.Now.TimeOfDay;
+            HoraSalida = DateTime.Now.TimeOfDay;
+            Actualizar("");
             await Application.Current.MainPage.Navigation.PushAsync(VistaAgg);
         }
 
