@@ -77,8 +77,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition></RowDefinition>
-            
         </Grid.RowDefinitions>
 
         <Border Background="{StaticResource Azul1}">
@@ -91,7 +91,7 @@
             </Border>
         </Border>
 
-        <!--<Border Background="{StaticResource Azul2}"
+        <Border Background="{StaticResource Azul2}"
                 Grid.Row="1"
                 BorderThickness="0,0,0,2"
                 BorderBrush="{StaticResource AzulBordes}">
@@ -107,11 +107,11 @@
                 <Label Style="{StaticResource LabelSubTitle}">Estado</Label>
 
             </UniformGrid>
-        </Border>-->
+        </Border>
 
         <Border Background="white"
                 Grid.Row="2">
-        <!--<ListBox ItemsSource="{Binding Arrivals}">
+        <ListBox ItemsSource="{Binding Arrivals}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                      <Border BorderBrush="{StaticResource GrisBordes}"
@@ -128,34 +128,9 @@
                 </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>-->
+        </ListBox>
 
-            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" AutoGenerateColumns="False"
-                      IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Header="Aerolinea"
-                        Binding="{Binding Aerolinea}"/>
-                    <DataGridTextColumn 
-                        Header="Hora Llegada"
-                        Binding="{Binding HorarioLlegada}"/>
-                    <DataGridTextColumn 
-                        Header="Hora Salida"
-                        Binding="{Binding HorarioSalida}"/>
-                    <DataGridTextColumn 
-                        Header="Origen"
-                        Binding="{Binding Origen}"/>
-                    <DataGridTextColumn 
-                        Header="Destino"
-                        Binding="{Binding Destino}"/>
-                    <DataGridTextColumn 
-                        Header="Puerta"
-                        Binding="{Binding Puerta}"/>
-                    <DataGridTextColumn 
-                        Header="Estado"
-                        Binding="{Binding Estado}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            
         </Border>
     </Grid>
 </Window>
