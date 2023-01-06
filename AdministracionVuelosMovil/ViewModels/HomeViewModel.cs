@@ -108,14 +108,16 @@ namespace AdministracionVuelosMovil.ViewModels
                     Avion.Estado = (int)Estado.Abordando;
                 else
                     Avion.Estado = (int)Estado.Despego;
-
+                Avion.HorarioLlegada = Avion.HorarioLlegada.Date;
+                Avion.HorarioSalida = Avion.HorarioSalida.Date;
                 Avion.HorarioLlegada = Avion.HorarioLlegada.Add(HoraLlegada);
-                Avion.HorarioSalida = Avion.HorarioSalida.Add(HoraLlegada);
-                Avion.HorarioSalida = Avion.HorarioSalida.AddHours(2);
-                Avion.HorarioLlegada = Avion.HorarioLlegada.AddHours(2);
-                Service.Agregar(Avion);
+                Avion.HorarioSalida = Avion.HorarioSalida.Add(HoraSalida);
+                //Avion.HorarioSalida = Avion.HorarioSalida.AddHours(2);
+                //Avion.HorarioLlegada = Avion.HorarioLlegada.AddHours(2);
+                await Service.Agregar(Avion);
                 ListaDeVuelos.Clear();
-                Service.Get().Result.ForEach(x => ListaDeVuelos.Add(x));
+                var vuelos = await Service.Get();
+                vuelos.ForEach(x=>ListaDeVuelos.Add(x));
                 await Application.Current.MainPage.Navigation.PopAsync();
 
             }
