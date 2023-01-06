@@ -64,20 +64,21 @@
                 VerticalOptions="EndAndExpand"
                 HeightRequest="10"
                 StrokeThickness="0"></Border>
-        
+
         <Border Grid.Row="1"
                 Grid.RowSpan="2"
                 Background="#f5f5f5"
                 StrokeThickness="0">
-            <CollectionView ItemsSource="{Binding ListaDeVuelos}"> 
+            <CollectionView ItemsSource="{Binding ListaDeVuelos}"
+                            Margin="0,0,0,40">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border Background="white"
                                 HeightRequest="80"
-                                Margin="40,40,40,-20"
-                                StrokeThickness="0">    
+                                Margin="40,40,40,-10"
+                                StrokeThickness="0">
                             <FlexLayout JustifyContent="SpaceBetween"
-                            Margin="20,0,0,0">
+                            Margin="20,0,0,10">
                                 <StackLayout>
                                     <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
                                     <Label Text="{Binding Aerolinea}"></Label>
@@ -106,7 +107,7 @@
             </CollectionView>
         </Border>
 
-       
+
 
         <Border Grid.Row="2" 
                 BackgroundColor="{StaticResource Azul3}"
