@@ -2,10 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AdministracionVuelosMovil.Views.InfoView"
-             Title="InfoView">
+             Title="InfoView" BackgroundColor="DeepSkyBlue"
+             >
 
+
+    <StackLayout>
+        <Label>Avion.Datos</Label>
+        <Label Text="{Binding Avion.Origen}"></Label>
+        <Label Text="{Binding Avion.Destino}"></Label>
+        <Label Text="{Binding Avion.HoriarioLlegada}"></Label>
+        <Label Text="{Binding Avion.HorarioSalida}"></Label>
+        <Label Text="{Binding Avion.Estado}"></Label>
+        <Label Text="{Binding Avion.Aerolinea}"></Label>
+        <Label Text="{Binding Avion.Puerta}"> </Label>
+
+        <Label>Vuelo.Datos</Label>
+
+        <Label Text="{Binding Vuelo.Origen}"></Label>
+        <Label Text="{Binding Vuelo.Destino}"></Label>
+        <Label Text="{Binding Vuelo.HoriarioLlegada}"></Label>
+        <Label Text="{Binding Vuelo.HorarioSalida}"></Label>
+        <Label Text="{Binding Vuelo.Estado}"></Label>
+        <Label Text="{Binding Vuelo.Aerolinea}"></Label>
+        <Label Text="{Binding Vuelo.Puerta}"></Label>
+
+        <Button Text="Editar"></Button>
+        <Button Text="Borrar"></Button>
+        
+    </StackLayout>
+    
    
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
 
             <Color x:Key="Azul1">#0b2343</Color>
@@ -44,8 +71,8 @@
             </Style>
 
         </ResourceDictionary>
-    </ContentPage.Resources>
-    <Grid>
+    </ContentPage.Resources>-->
+    <!--<Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0,1">
                 <GradientStop Color="{StaticResource Azul1}"
@@ -58,9 +85,9 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="1.8*"></RowDefinition>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
 
-        <StackLayout Margin="30,0,30,40"
+        <!--<StackLayout Margin="30,0,30,40"
                      VerticalOptions="End">
 
             <StackLayout Orientation="Horizontal"
@@ -99,11 +126,8 @@
                              Margin="20,0,0,0">
                     <Label TextColor="{StaticResource GrisBordes}">Pais Origen</Label>
                     <Grid>
-                        <Entry TextColor="White" Text="{Binding Avion.Origen}"
-                           Placeholder="ESCRIBA PAIS DE ORIGEN DEL VUELO"               
-                           PlaceholderColor="{StaticResource GrisBordes}"
-                               IsReadOnly="True"
-                           ></Entry>
+                        <Label TextColor="White" Text="{Binding Avion.Origen}"         
+                           ></Label>
                         <BoxView
                         HeightRequest="1"
                         Color="White"
@@ -131,11 +155,8 @@
                              Margin="20,0,0,0">
                     <Label TextColor="{StaticResource GrisBordes}">Pais Destino</Label>
                     <Grid>
-                        <Entry TextColor="White" Text="{Binding Avion.Destino}"
-                           Placeholder="ESCRIBA PAIS DE DESTINO DEL VUELO"               
-                           PlaceholderColor="{StaticResource GrisBordes}"
-                               IsReadOnly="True"
-                           ></Entry>
+                        <Label TextColor="White" Text="{Binding Avion.Destino}"         
+                           ></Label>
                         <BoxView
                         HeightRequest="1"
                         Color="White"
@@ -163,21 +184,13 @@
 
                 <StackLayout>
                     <Label Style="{StaticResource SubtitleLabel}">Estado</Label>
-                    <Picker Background="#f1f1f1" SelectedItem="{Binding EstadoVuelo}"
+                    <Label Background="#f1f1f1" Text="{Binding EstadoVuelo}"
                         HeightRequest="60"
                         Margin="0,10"
                         TextColor="{StaticResource Azul1}"
                             IsEnabled="False"
                         >
-                        <Picker.ItemsSource>
-                            <x:Array Type="{x:Type x:String}">
-                                <x:String>A Tiempo</x:String>
-                                <x:String>Retrasado</x:String>
-                                <x:String>Abordando</x:String>
-                                <x:String>Despego</x:String>
-                            </x:Array>
-                        </Picker.ItemsSource>
-                    </Picker>
+                    </Label>
                 </StackLayout>
 
                 <Grid>
@@ -191,9 +204,9 @@
                         <Label Style="{StaticResource SubtitleLabel}">Llegada</Label>
                         <Grid>
                             <StackLayout Orientation="Horizontal" Margin="0">
-                                <DatePicker Date="{Binding Avion.HorarioLlegada}" TextColor="{StaticResource Azul1}" IsEnabled="False"></DatePicker>
-                                <TimePicker Time="{Binding HoraLlegada}"  TextColor="{StaticResource Azul1}" IsEnabled="False"
-                                            Margin="50,0"></TimePicker>
+                                <Label Text="{Binding Avion.HorarioLlegada}" TextColor="{StaticResource Azul1}"></Label>
+                                <Label Text="{Binding HoraLlegada}"  TextColor="{StaticResource Azul1}"
+                                            Margin="50,0"></Label>
                             </StackLayout>
                             <BoxView
                         HeightRequest="1.2"
@@ -208,9 +221,9 @@
                         <Label Style="{StaticResource SubtitleLabel}">Despegue</Label>
                         <Grid>
                             <StackLayout Orientation="Horizontal" Margin="0">
-                                <DatePicker Date="{Binding Avion.HorarioSalida}" TextColor="{StaticResource Azul1}" IsEnabled="False"></DatePicker>
-                                <TimePicker Time="{Binding HoraSalida}" TextColor="{StaticResource Azul1}" IsEnabled="False"
-                                            Margin="50,0"></TimePicker>
+                                <Label Text="{Binding Avion.HorarioSalida}" TextColor="{StaticResource Azul1}"></Label>
+                                <Label Text="{Binding HoraSalida}" TextColor="{StaticResource Azul1}"
+                                            Margin="50,0"></Label>
                             </StackLayout>
                             <BoxView
                         HeightRequest="1.2"
@@ -225,13 +238,10 @@
                 <StackLayout>
                     <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
                     <Grid>
-                        <Entry
-                           TextColor="{StaticResource Azul1}"
-                           Placeholder="Aerolinea del vuelo."     
+                        <Label
+                           TextColor="{StaticResource Azul1}" 
                             Text="{Binding Avion.Aerolinea}"
-                           PlaceholderColor="{StaticResource GrisBordes}"
-                            IsReadOnly="True"
-                           ></Entry>
+                           ></Label>
                         <BoxView
                         HeightRequest="1"
                         Color="{StaticResource AzulBordes}"
@@ -243,14 +253,10 @@
                 <StackLayout>
                     <Label Style="{StaticResource SubtitleLabel}">Puerta de Abordaje</Label>
                     <Grid>
-                        <Entry 
-                            Keyboard="Numeric"
+                        <Label 
                             Text="{Binding Avion.Puerta}"
                             TextColor="{StaticResource Azul1}"
-                           Placeholder="Puerta de abordaje del vuelo."               
-                           PlaceholderColor="{StaticResource GrisBordes}"
-                            IsReadOnly="True"
-                           ></Entry>
+                           ></Label>
                         <BoxView
                         HeightRequest="1"
                         Color="{StaticResource AzulBordes}"
@@ -300,7 +306,7 @@
                VerticalOptions="EndAndExpand"
                HorizontalOptions="CenterAndExpand"
                Text="{Binding Error}"
-                TextColor="Red"></Label>
+                TextColor="Red"></Label>-->
 
-    </Grid>
+    <!--</Grid>-->
 </ContentPage>
