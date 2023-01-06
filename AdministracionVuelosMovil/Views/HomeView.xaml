@@ -12,6 +12,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            
             <hp:EstadoConverter x:Key="estadoconverter"></hp:EstadoConverter>
             
             <Color x:Key="Azul1">#0b2343</Color>
