@@ -6,7 +6,7 @@
              >
 
 
-    <StackLayout>
+    <!--<StackLayout>
         <Label>Avion.Datos</Label>
         <Label Text="{Binding Avion.Origen}"></Label>
         <Label Text="{Binding Avion.Destino}"></Label>
@@ -29,10 +29,10 @@
         <Button Text="Editar"></Button>
         <Button Text="Borrar"></Button>
         
-    </StackLayout>
+    </StackLayout>-->
     
    
-    <!--<ContentPage.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary>
 
             <Color x:Key="Azul1">#0b2343</Color>
@@ -71,8 +71,8 @@
             </Style>
 
         </ResourceDictionary>
-    </ContentPage.Resources>-->
-    <!--<Grid>
+    </ContentPage.Resources>
+    <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0,1">
                 <GradientStop Color="{StaticResource Azul1}"
@@ -85,9 +85,9 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="1.8*"></RowDefinition>
-        </Grid.RowDefinitions>-->
+        </Grid.RowDefinitions>
 
-        <!--<StackLayout Margin="30,0,30,40"
+        <StackLayout Margin="30,0,30,40"
                      VerticalOptions="End">
 
             <StackLayout Orientation="Horizontal"
@@ -306,7 +306,7 @@
                VerticalOptions="EndAndExpand"
                HorizontalOptions="CenterAndExpand"
                Text="{Binding Error}"
-                TextColor="Red"></Label>-->
+                TextColor="Red"></Label>
 
-    <!--</Grid>-->
+    </Grid>
 </ContentPage>

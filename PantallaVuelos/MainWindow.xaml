@@ -37,7 +37,7 @@
 
             <Style TargetType="Label">
                 <Setter Property="Foreground" Value="{StaticResource Azul1}"></Setter>
-                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="FontSize" Value="28"></Setter>
                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             </Style>
             <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
@@ -116,7 +116,8 @@
                 <DataTemplate>
                      <Border BorderBrush="{StaticResource GrisBordes}"
                         BorderThickness="0,0,0,2">
-                    <UniformGrid Rows="1">
+                    <UniformGrid Rows="1"
+                                 Width="1920" >
                                 <Label Content="{Binding Aerolinea}"></Label>
                                 <Label Content="{Binding HorarioLlegada}"></Label>
                                 <Label Content="{Binding HorarioSalida}"></Label>

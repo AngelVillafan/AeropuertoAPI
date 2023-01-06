@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:hp ="clr-namespace:AdministracionVuelosMovil.Helpers"
              xmlns:vm="clr-namespace:AdministracionVuelosMovil.ViewModels"
              x:Class="AdministracionVuelosMovil.Views.HomeView"
              Title="Aeromexico"
@@ -8,10 +9,11 @@
     <ContentPage.BindingContext>
         <vm:HomeViewModel></vm:HomeViewModel>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
-
+            <hp:EstadoConverter x:Key="estadoconverter"></hp:EstadoConverter>
+            
             <Color x:Key="Azul1">#0b2343</Color>
             <Color x:Key="Azul2">#002b5c</Color>
             <Color x:Key="Azul3">#004990</Color>
@@ -70,7 +72,8 @@
                 Background="#f5f5f5"
                 StrokeThickness="0">
             <CollectionView ItemsSource="{Binding ListaDeVuelos}"
-                            Margin="0,0,0,40">
+                            Margin="0,0,0,40"
+                            >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border Background="white"
@@ -130,10 +133,10 @@
                                     <StackLayout Margin="20,0,20,20"
                                                  VerticalOptions="Center">
                                         <Label Style="{StaticResource SubtitleLabel}">Estado</Label>
-                                        <Label Text="{Binding Estado}"></Label>
+                                        <Label Text="{Binding Estado, Converter={StaticResource estadoconverter}}"></Label>
                                     </StackLayout>
 
-                                    <Border Padding="20"
+                                    <!--<Border Padding="60,20"
                                             HorizontalOptions="EndAndExpand"
                                             Background="red"
                                             StrokeThickness="0">
@@ -141,8 +144,24 @@
                                             <TapGestureRecognizer Command="{Binding EliminarCommand}"></TapGestureRecognizer>
                                         </Border.GestureRecognizers>
                                         <Label TextColor="White"
-                                                FontAttributes="Bold">Eliminar Vuelo</Label>
-                                    </Border>
+                                                FontAttributes="Bold">Eliminar Vuelo
+
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding EliminarCommand}"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Border>-->
+
+                                    <Button Text="Eliminar"
+                                            FontAttributes="Bold"
+                                            FontSize="Large"
+                                            TextColor="White"
+                                            Padding="75,0"
+                                            HorizontalOptions="EndAndExpand"
+                                            Background="red"
+                                            Command="{Binding EliminarCommand}"
+                                            CornerRadius="0">
+                                    </Button>
                                 </StackLayout>
                             </Grid>
                             
