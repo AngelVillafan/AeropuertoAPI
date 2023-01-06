@@ -74,30 +74,81 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border Background="white"
-                                HeightRequest="80"
+                                HeightRequest="220"
                                 Margin="40,40,40,-10"
                                 StrokeThickness="0">
-                            <FlexLayout JustifyContent="SpaceBetween"
-                            Margin="20,0,0,10">
-                                <StackLayout>
-                                    <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
-                                    <Label Text="{Binding Aerolinea}"></Label>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <FlexLayout JustifyContent="SpaceBetween"
+                                            Margin="20,0,0,0">
+                                    <StackLayout>
+                                        <Label Style="{StaticResource SubtitleLabel}">Aerolinea</Label>
+                                        <Label Text="{Binding Aerolinea}"></Label>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Style="{StaticResource SubtitleLabel}">Llegada</Label>
+                                        <Label Text="{Binding HorarioLlegada,StringFormat='{}{0:h:mm tt}'}"></Label>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Style="{StaticResource SubtitleLabel}">Salida</Label>
+                                        <Label Text="{Binding HorarioSalida,StringFormat='{}{0:h:mm tt}'}"></Label>
+                                    </StackLayout>
+                                    <Border FlexLayout.AlignSelf="End"
+                                            WidthRequest="20"
+                                            HeightRequest="100"
+                                            StrokeThickness="0"
+                                            Background="{StaticResource Azul1}">        
+                                    </Border>
+                                </FlexLayout>
+                                <FlexLayout Grid.Row="1" JustifyContent="SpaceBetween"
+                                            Margin="20,0,0,-1">
+                                    <StackLayout>
+                                        <Label Style="{StaticResource SubtitleLabel}">Origen</Label>
+                                        <Label Text="{Binding Origen}"></Label>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Style="{StaticResource SubtitleLabel}">Destino</Label>
+                                        <Label Text="{Binding Destino}"></Label>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label Style="{StaticResource SubtitleLabel}">Puerta</Label>
+                                        <Label Text="{Binding Puerta}"></Label>
+                                    </StackLayout>
+                                    <Border FlexLayout.AlignSelf="End"
+                                            WidthRequest="20"
+                                            HeightRequest="100"
+                                            StrokeThickness="0"
+                                            Background="{StaticResource Azul1}">
+                                    </Border>
+                                </FlexLayout>
+                                <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                    <StackLayout Margin="20,0,20,20"
+                                                 VerticalOptions="Center">
+                                        <Label Style="{StaticResource SubtitleLabel}">Estado</Label>
+                                        <Label Text="{Binding Estado}"></Label>
+                                    </StackLayout>
+
+                                    <Border Padding="20"
+                                            HorizontalOptions="EndAndExpand"
+                                            Background="red"
+                                            StrokeThickness="0">
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EliminarCommand}"></TapGestureRecognizer>
+                                        </Border.GestureRecognizers>
+                                        <Label TextColor="White"
+                                                FontAttributes="Bold">Eliminar Vuelo</Label>
+                                    </Border>
                                 </StackLayout>
-                                <StackLayout>
-                                    <Label Style="{StaticResource SubtitleLabel}">Destino</Label>
-                                    <Label Text="{Binding Destino}"></Label>
-                                </StackLayout>
-                                <StackLayout>
-                                    <Label Style="{StaticResource SubtitleLabel}">Hora</Label>
-                                    <Label Text="{Binding HorarioSalida,StringFormat='{}{0:h:mm tt}'}"></Label>
-                                </StackLayout>
-                                <Border FlexLayout.AlignSelf="End"
-                            WidthRequest="20"
-                            HeightRequest="80"
-                            StrokeThickness="0"
-                            Background="{StaticResource Azul1}">
-                                </Border>
-                            </FlexLayout>
+                            </Grid>
+                            
+                                
+                            
+                            
 
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
