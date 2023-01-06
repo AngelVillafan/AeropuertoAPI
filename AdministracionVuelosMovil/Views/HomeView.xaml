@@ -94,7 +94,8 @@
                                 <Border FlexLayout.AlignSelf="End"
                             WidthRequest="20"
                             HeightRequest="80"
-                            StrokeThickness="0">
+                            StrokeThickness="0"
+                            Background="{StaticResource Azul1}">
                                 </Border>
                             </FlexLayout>
 
