@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace AdministracionVuelosMovil.Services
 
         public AvionesService()
         {
-            cliente= new HttpClient() { BaseAddress = new Uri("https://aeromexico.sistemas19.com") };
+            cliente = new HttpClient() { BaseAddress = new Uri("https://aeromexico.sistemas19.com") };
         }
 
         public async Task<List<Vuelo>> Get()
@@ -46,7 +47,20 @@ namespace AdministracionVuelosMovil.Services
             {
                 Confirmar.Invoke(await response.Result.Content.ReadAsStringAsync());
             }
-                   
+        }
+
+        public async Task Eliminar(Vuelo vuelo)
+        {
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(vuelo), Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Delete, "");
+            request.Content = stringContent;
+            var response = cliente.SendAsync(request);
+            response.Wait();
+            if (!response.Result.IsSuccessStatusCode)
+            {
+                Confirmar.Invoke(await response.Result.Content.ReadAsStringAsync());
+            }
         }
     }
 }

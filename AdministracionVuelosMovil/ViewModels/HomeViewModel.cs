@@ -61,8 +61,12 @@ namespace AdministracionVuelosMovil.ViewModels
             await App.Current.MainPage.DisplayAlert("Informacion", obj, "ACEPTAR");
         }
 
-        private void EliminarVuelo()
+        private async void EliminarVuelo()
         {
+            if(Avion!=null)
+            {
+                await Service.Eliminar(Avion);
+            }
         }
 
         private async void VerInfo(Vuelo vuelo)
