@@ -67,6 +67,9 @@
                 <Frame BackgroundColor="{StaticResource Azul1}"
                        CornerRadius="100"
                        BorderColor="Transparent">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding VerHomeCommand}"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
                     <Path Fill="white" Data="M13.170958,0L14.585027,1.4149784 3.8476841,12.144024 32.000095,12.144024 32.000095,14.145017 3.8188674,14.145017 14.607,24.922982 13.191954,26.338998 0,13.159001z" ></Path>
                 </Frame>
                 <Label Margin="20,0"
@@ -95,7 +98,7 @@
                              Margin="20,0,0,0">
                     <Label TextColor="{StaticResource GrisBordes}">Pais Origen</Label>
                     <Grid>
-                        <Entry TextColor="White" 
+                        <Entry TextColor="White" Text="{Binding Avion.Origen}"
                            Placeholder="ESCRIBA PAIS DE ORIGEN DEL VUELO"               
                            PlaceholderColor="{StaticResource GrisBordes}"
                            ></Entry>
@@ -126,7 +129,7 @@
                              Margin="20,0,0,0">
                     <Label TextColor="{StaticResource GrisBordes}">Pais Destino</Label>
                     <Grid>
-                        <Entry TextColor="White" 
+                        <Entry TextColor="White" Text="{Binding Avion.Destino}"
                            Placeholder="ESCRIBA PAIS DE DESTINO DEL VUELO"               
                            PlaceholderColor="{StaticResource GrisBordes}"
                            ></Entry>
@@ -157,11 +160,20 @@
 
                 <StackLayout>
                     <Label Style="{StaticResource SubtitleLabel}">Estado</Label>
-                    <Picker Background="#f1f1f1"
+                    <Picker Background="#f1f1f1" SelectedItem="{Binding EstadoVuelo}"
                         HeightRequest="60"
                         Margin="0,10"
                         TextColor="{StaticResource Azul1}"
-                        ></Picker>
+                        >
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>A Tiempo</x:String>
+                                <x:String>Retrasado</x:String>
+                                <x:String>Abordando</x:String>
+                                <x:String>Despego</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
                 </StackLayout>
 
                 <Grid>
@@ -175,8 +187,8 @@
                         <Label Style="{StaticResource SubtitleLabel}">Llegada</Label>
                         <Grid>
                             <StackLayout Orientation="Horizontal" Margin="0">
-                                <DatePicker TextColor="{StaticResource Azul1}"></DatePicker>
-                                <TimePicker TextColor="{StaticResource Azul1}"
+                                <DatePicker Date="{Binding Avion.HorarioLlegada}" TextColor="{StaticResource Azul1}"></DatePicker>
+                                <TimePicker Time="{Binding HoraLlegada}"  TextColor="{StaticResource Azul1}"
                                             Margin="50,0"></TimePicker>
                             </StackLayout>
                             <BoxView
@@ -192,8 +204,8 @@
                         <Label Style="{StaticResource SubtitleLabel}">Despegue</Label>
                         <Grid>
                             <StackLayout Orientation="Horizontal" Margin="0">
-                                <DatePicker TextColor="{StaticResource Azul1}"></DatePicker>
-                                <TimePicker TextColor="{StaticResource Azul1}"
+                                <DatePicker Date="{Binding Avion.HorarioSalida}" TextColor="{StaticResource Azul1}"></DatePicker>
+                                <TimePicker Time="{Binding HoraSalida}" TextColor="{StaticResource Azul1}"
                                             Margin="50,0"></TimePicker>
                             </StackLayout>
                             <BoxView
@@ -211,7 +223,8 @@
                     <Grid>
                         <Entry
                            TextColor="{StaticResource Azul1}"
-                           Placeholder="Aerolinea del vuelo."               
+                           Placeholder="Aerolinea del vuelo."     
+                            Text="{Binding Avion.Aerolinea}"
                            PlaceholderColor="{StaticResource GrisBordes}"
                            ></Entry>
                         <BoxView
@@ -227,6 +240,7 @@
                     <Grid>
                         <Entry 
                             Keyboard="Numeric"
+                            Text="{Binding Avion.Puerta}"
                             TextColor="{StaticResource Azul1}"
                            Placeholder="Puerta de abordaje del vuelo."               
                            PlaceholderColor="{StaticResource GrisBordes}"
@@ -244,13 +258,18 @@
                         VerticalOptions="End"
                         Background="red"
                         StrokeThickness="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AgregarCommand}"></TapGestureRecognizer>
+                    </Border.GestureRecognizers>
                     <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="100"></RoundRectangle>
+                        <RoundRectangle CornerRadius="100">
+
+                        </RoundRectangle>
                     </Border.StrokeShape>
                     <Label
                        TextColor="White"
                        FontAttributes="Bold"
-                        HorizontalOptions="Center">Confirmar Cambios</Label>
+                        HorizontalOptions="Center">Confirmar</Label>
                 </Border>
 
             </StackLayout>
@@ -261,8 +280,8 @@
                Margin="0,10"
                VerticalOptions="EndAndExpand"
                HorizontalOptions="CenterAndExpand"
-               IsVisible="false"
-                TextColor="Red">ERROR</Label>
+               Text="{Binding Error}"
+                TextColor="Red"></Label>
 
     </Grid>
 </ContentPage>
